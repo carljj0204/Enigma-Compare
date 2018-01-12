@@ -20,7 +20,7 @@
     <link href="css/animate.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="css/style.css" rel="stylesheet">
-	
+
 	 <link href="datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
 
     <!-- DataTables Responsive CSS -->
@@ -40,88 +40,92 @@
 <body>
 <nav class="navbar navbar-inverse">
 		<div class="container-fluid">
-			
+
 			<div>
 				<ul class="nav navbar-nav">
 				<li>
-					<a href="index.php">Compare Price</a>	
+					<a href="index.php">Compare Price</a>
 				</li>
 				<li>
-					<a href="aralco.php">Aralco</a>	
+					<a href="aralco.php">Aralco</a>
+				</li>
+
+				<li>
+					<a href="#">Pakibura toh thanks! hahahaha. VIRUS!!!</a>	
 				</li>
 				<li>
-					<a href="web_check_quantity.php">Website Quantity Check</a>	
+					<a href="web_check_quantity.php">Website Quantity Check</a>
 				</li>
-				
-			</ul>	
-			</div>		
+
+			</ul>
+			</div>
 		</div>
 	</nav>
 <div class = "container">
-	  
-                     
+
+
                 <div class="row">
                    <div class="col-md-12">
-                 <div class="white-box">                    
+                 <div class="white-box">
 			 	<table class="table" id="dataTables-example">
                   	<thead>
                     <tr>
               <th>Product Code</th>
-               <th>Quantity</th>         
-              <th>Web DP</th>                  
-							<th>Web Loyale</th>  		
+               <th>Quantity</th>
+              <th>Web DP</th>
+							<th>Web Loyale</th>
 							<th>Web Walk In</th>
-              <th>Pricelist Reseller</th>     	
-							<th>Pricelist Loyale</th>  		
-							<th>Pricelist Walk In</th>  
+              <th>Pricelist Reseller</th>
+							<th>Pricelist Loyale</th>
+							<th>Pricelist Walk In</th>
 							<th>Result</th>
-								  											
-                    </tr>   
-                  </thead>                 
-            <?php              
+
+                    </tr>
+                  </thead>
+            <?php
        				include 'controller/config.php';
 
                     $web_sql = "SELECT * FROM cixtv_hikashop_product where product_published = '1'";
                     $web_result =  mysqli_query($db,$web_sql);
                     while($web_row = mysqli_fetch_array($web_result))
 
-                    {   
+                    {
                     	$web_productcode = $web_row['product_code'];
                        $web_productid = $web_row['product_id'];
                       $product_quantity = $web_row['product_quantity'];
-                    
+
                     $pricelist_sql = "SELECT * FROM pricelist where product_code = '$web_productcode'";
                     $pricelist_result =  mysqli_query($db,$pricelist_sql);
                     while($price_row = mysqli_fetch_array($pricelist_result))
 
-                    {  
+                    {
                        $pricelist_reseller = $price_row['reseller'];
                     	 $pricelist_loyale = $price_row['loyale'];
                        $pricelist_walkinprice = $price_row['walkinprice'];
-                           	
-                    ?>                
+
+                    ?>
                     <tr>
                            <td><?php echo $web_productcode;?></td>
                            <td><?php echo $product_quantity;?></td>
-                           <td><?php 
+                           <td><?php
 
                   $web_dp_sql = "SELECT * FROM cixtv_hikashop_price where price_product_id = '$web_productid' AND price_access = ',12,'";
                     $web_dp_price_result =  mysqli_query($db,$web_dp_sql);
                     while($web_dp_price_row = mysqli_fetch_array($web_dp_price_result))
 
-                    {   
+                    {
                       $web_dp = $web_dp_price_row['price_value'];
                     }
                     Echo $web_dp;
 
                            ?></td>
-                           <td><?php 
+                           <td><?php
 
                               $web_loyale_price_sql = "SELECT * FROM cixtv_hikashop_price where price_product_id = '$web_productid' AND price_access = ',11,'";
                     $web_loyale_price_result =  mysqli_query($db,$web_loyale_price_sql);
                     while($web_loyale_price_row = mysqli_fetch_array($web_loyale_price_result))
 
-                    {   
+                    {
                       $web_loyale = $web_loyale_price_row['price_value'];
                     }
                     Echo $web_loyale;
@@ -133,7 +137,7 @@
                     $web_walkin_price_result =  mysqli_query($db,$web_walkin_price_sql);
                     while($web_walkin_price_row = mysqli_fetch_array($web_walkin_price_result))
 
-                    {   
+                    {
                       $web_walkinprice = $web_walkin_price_row['price_value'];
                     }
                     Echo $web_walkinprice;
@@ -155,19 +159,19 @@
                            <td><?php echo $pricelist_loyale;?></td>
                            <td><?php echo $pricelist_walkinprice;?></td>
                            <td><?php echo $result;?></td>
-                            
+
                     </tr>
-				
+
                 <?php
-                    }  
-                     }  
-                                   
+                    }
+                     }
+
             ?>
        			 </table>
-            	</div> 
-            
+            	</div>
+
               </div>
-            
+
                 </div>
 </div>
 	  <script src="plugins/bower_components/jquery/dist/jquery.min.js"></script>
@@ -181,8 +185,8 @@
     <script src="js/waves.js"></script>
     <!-- Custom Theme JavaScript -->
     <script src="js/custom.min.js"></script>
-  
-  
+
+
     <script>
     $(document).ready(function() {
         $('#dataTables-example').DataTable({
@@ -190,7 +194,7 @@
         });
     });
     </script>
-  
+
     <script src="datatables/js/jquery.dataTables.min.js"></script>
     <script src="datatables-plugins/dataTables.bootstrap.min.js"></script>
     <script src="datatables-responsive/dataTables.responsive.js"></script>
